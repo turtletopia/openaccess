@@ -8,6 +8,11 @@ Authors@R: c(person("Laura", "Bakala",
              role = c("cre", "aut", "cph"),
              comment = c(ORCID = "0000-0002-3213-2484")))
 Description: Check whether the papers you use are in open access.
+Imports: 
+    glue,
+    rvest,
+    stringr,
+    utils
 License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
