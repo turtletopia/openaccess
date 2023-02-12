@@ -1,3 +1,18 @@
+#' Check a paper for open access
+#'
+#' @description
+#' Checks whether the full text of the paper is available without restrictions.
+#' Throws error if no interpreter available for the journal.
+#'
+#' @param article `character(1) | xml_document(1)`\cr
+#'  DOI of the paper; or the HTML site containing the paper acquired using
+#'  [rvest::read_html()] or [httr2::resp_body_html()].
+#'
+#' @return `TRUE` or `FALSE` depending on check result.
+#'
+#' @examples
+#' is_open_access("10.1093/nar/gkac882")
+#'
 #' @export
 is_open_access <- function(article) {
   UseMethod("is_open_access")
