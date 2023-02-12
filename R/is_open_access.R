@@ -9,12 +9,19 @@
 #'  [rvest::read_html()] or [httr2::resp_body_html()].
 #'
 #' @section Supported sources:
+#' * Academic Press
+#' * Biophysical Journal
 #' * eLife
+#' * Elsevier
 #' * Frontiers
 #' * Journal of Biological Chemistry
+#' * Journal of Neuroscience
+#' * MDPI
 #' * Nature
 #' * PLOS ONE
 #' * PNAS
+#' * Portland Press
+#' * The Royal Society of Chemistry
 #' * SpringerLink
 #'
 #' @return `TRUE` or `FALSE` depending on check result.
@@ -67,6 +74,13 @@ determine_source <- function(page) {
     # If `og:site_name` property is missing
     source <- page %>%
       html_element("head>meta[name=citation_publisher]") %>%
+      html_attr("content")
+  }
+
+  if (is.na(source)) {
+    # If citation publisher is missing as well
+    source <- page %>%
+      html_element("head>meta[name=\"DC.publisher\"]") %>%
       html_attr("content")
   }
 

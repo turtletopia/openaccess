@@ -30,12 +30,19 @@ Throws error if no interpreter available for the journal.
 \section{Supported sources}{
 
 \itemize{
+\item Academic Press
+\item Biophysical Journal
 \item eLife
+\item Elsevier
 \item Frontiers
 \item Journal of Biological Chemistry
+\item Journal of Neuroscience
+\item MDPI
 \item Nature
 \item PLOS ONE
 \item PNAS
+\item Portland Press
+\item The Royal Society of Chemistry
 \item SpringerLink
 }
 }
