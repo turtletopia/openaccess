@@ -1,0 +1,17 @@
+Package: openaccess
+Type: Package
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Date: 2023-02-12
+Authors@R: c(person("Laura", "Bakala",
+             email = "erdaradun.gaztea@gmail.com",
+             role = c("cre", "aut", "cph"),
+             comment = c(ORCID = "0000-0002-3213-2484")))
+Description: What the package does (one paragraph).
+License: GPL (>= 3)
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+URL: https://github.com/ErdaradunGaztea/openaccess
+BugReports: https://github.com/ErdaradunGaztea/openaccess/issues
+Language: en-US
