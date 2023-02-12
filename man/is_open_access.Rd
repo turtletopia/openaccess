@@ -27,6 +27,17 @@ DOI of the paper; or the HTML site containing the paper acquired using
 Checks whether the full text of the paper is available without restrictions.
 Throws error if no interpreter available for the journal.
 }
+\section{Supported sources}{
+
+\itemize{
+\item eLife
+\item Journal of Biological Chemistry
+\item Nature
+\item PNAS
+\item SpringerLink
+}
+}
+
 \examples{
 is_open_access("10.1093/nar/gkac882")
 

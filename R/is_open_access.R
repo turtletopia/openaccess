@@ -8,6 +8,13 @@
 #'  DOI of the paper; or the HTML site containing the paper acquired using
 #'  [rvest::read_html()] or [httr2::resp_body_html()].
 #'
+#' @section Supported sources:
+#' * eLife
+#' * Journal of Biological Chemistry
+#' * Nature
+#' * PNAS
+#' * SpringerLink
+#'
 #' @return `TRUE` or `FALSE` depending on check result.
 #'
 #' @examples
