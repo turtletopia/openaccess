@@ -31,8 +31,10 @@ Throws error if no interpreter available for the journal.
 
 \itemize{
 \item eLife
+\item Frontiers
 \item Journal of Biological Chemistry
 \item Nature
+\item PLOS ONE
 \item PNAS
 \item SpringerLink
 }

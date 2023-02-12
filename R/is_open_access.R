@@ -10,8 +10,10 @@
 #'
 #' @section Supported sources:
 #' * eLife
+#' * Frontiers
 #' * Journal of Biological Chemistry
 #' * Nature
+#' * PLOS ONE
 #' * PNAS
 #' * SpringerLink
 #'
@@ -60,6 +62,14 @@ determine_source <- function(page) {
   source <- page %>%
     html_element("head>meta[property=\"og:site_name\"]") %>%
     html_attr("content")
+
+  if (is.na(source)) {
+    # If `og:site_name` property is missing
+    source <- page %>%
+      html_element("head>meta[name=citation_publisher]") %>%
+      html_attr("content")
+  }
+
   structure(
     page,
     source_site = source,
