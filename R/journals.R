@@ -2,12 +2,25 @@ check_open_access <- function(page) {
   source_site <- attr(page, "source_site", exact = TRUE)
   switch(
     source_site,
+    "eLife" = is_oa_elife(page),
+    "Journal of Biological Chemistry" = is_oa_jbc(page),
     "SpringerLink" = ,
     "Nature" = is_oa_nature(page),
     "PNAS" = is_oa_pnas(page),
-    "Journal of Biological Chemistry" = is_oa_jbc(page),
     stop(glue("'{source_site}' is not supported as a source", call. = FALSE))
   )
+}
+
+#' @importFrom rvest html_element
+is_oa_elife <- function(page) {
+  html_element(page, "a.content-header__icon--oa") %>%
+    Negate(is.na)()
+}
+
+#' @importFrom rvest html_element
+is_oa_jbc <- function(page) {
+  html_element(page, "span.article-header__access") %>%
+    Negate(is.na)()
 }
 
 #' @importFrom rvest html_element
@@ -19,11 +32,5 @@ is_oa_nature <- function(page) {
 #' @importFrom rvest html_element
 is_oa_pnas <- function(page) {
   html_element(page, "i.icon-open_access") %>%
-    Negate(is.na)()
-}
-
-#' @importFrom rvest html_element
-is_oa_jbc <- function(page) {
-  html_element(page, "span.article-header__access") %>%
     Negate(is.na)()
 }
