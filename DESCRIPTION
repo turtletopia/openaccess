@@ -10,7 +10,7 @@ Authors@R: c(person("Laura", "Bakala",
 Description: Check whether the papers you use are in open access.
 Imports: 
     glue,
-    rvest,
+    rvest (>= 1.0.0),
     stringr,
     utils
 License: GPL (>= 3)
