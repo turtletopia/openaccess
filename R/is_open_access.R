@@ -10,19 +10,27 @@
 #'
 #' @section Supported sources:
 #' * Academic Press
+#' * BioMed Central
 #' * Biophysical Journal
+#' * Cambridge Core
+#' * Cell Reports
 #' * eLife
 #' * Elsevier
 #' * Frontiers
+#' * Hindawi
 #' * Journal of Biological Chemistry
 #' * Journal of Neuroscience
 #' * MDPI
+#' * Molecular Cell
 #' * Nature
 #' * OUP Academic
+#' * PeerJ
+#' * Pergamon
 #' * PLOS ONE
 #' * Portland Press
 #' * The Royal Society of Chemistry
 #' * SpringerLink
+#' * Taylor & Francis
 #'
 #' @return `TRUE` or `FALSE` depending on check result.
 #'
@@ -70,14 +78,14 @@ determine_source <- function(page) {
     html_element("head>meta[property=\"og:site_name\"]") %>%
     html_attr("content")
 
-  if (is.na(source)) {
+  if (is.na(source) || source == "") {
     # If `og:site_name` property is missing
     source <- page %>%
       html_element("head>meta[name=citation_publisher]") %>%
       html_attr("content")
   }
 
-  if (is.na(source)) {
+  if (is.na(source) || source == "") {
     # If citation publisher is missing as well
     source <- page %>%
       html_element("head>meta[name=\"DC.publisher\"]") %>%

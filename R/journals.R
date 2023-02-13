@@ -2,23 +2,51 @@ check_open_access <- function(page) {
   source_site <- attr(page, "source_site", exact = TRUE)
   switch(
     source_site,
-    "Frontiers" = TRUE,
+    "Frontiers" = ,
+    "PeerJ" = TRUE,
     "OUP Academic" = ,
     "Portland Press" = is_oa_icon(page),
+    "Cambridge Core" = is_oa_cambridge(page),
+    "Cell Reports" = ,
+    "Biophysical Journal" = ,
+    "Journal of Biological Chemistry" = ,
+    "Molecular Cell" = is_oa_cell(page),
     "eLife" = is_oa_elife(page),
     "Elsevier" = ,
-    "Academic Press" = is_oa_elsevier(page),
-    "Journal of Biological Chemistry" = ,
-    "Biophysical Journal" = is_oa_jbc(page),
+    "Academic Press" = ,
+    "Pergamon" = is_oa_elsevier(page),
+    "Hindawi" = is_oa_hindawi(page),
     "Journal of Neuroscience" = is_oa_jneurosci(page),
     "MDPI" = is_oa_mdpi(page),
     "Nature" = ,
+    "BioMed Central" = ,
     "SpringerLink" = is_oa_nature(page),
     "PNAS" = is_oa_pnas(page),
     "Public Library of Science" = is_oa_plos(page),
     "The Royal Society of Chemistry" = is_oa_rsc(page),
+    "Taylor & Francis" = is_oa_taylor_francis(page),
     stop(glue("'{source_site}' is not supported as a source", call. = FALSE))
   )
+}
+
+#' @importFrom rvest html_element
+is_oa_icon <- function(page) {
+  html_element(page, "i.icon-availability_open") %>%
+    Negate(is.na)()
+}
+
+#' @importFrom rvest html_element
+is_oa_cambridge <- function(page) {
+  html_element(page, "span.open-access>img.open-access") %>%
+    Negate(is.na)()
+}
+
+#' @importFrom rvest html_element html_text
+#' @importFrom stringr str_detect
+is_oa_cell <- function(page) {
+  html_element(page, "span.article-header__access") %>%
+    html_text() %>%
+    str_detect("^Open (?:Archive|Access)$")
 }
 
 #' @importFrom rvest html_element
@@ -33,17 +61,12 @@ is_oa_elsevier <- function(page) {
     Negate(is.na)()
 }
 
-#' @importFrom rvest html_element
-is_oa_icon <- function(page) {
-  html_element(page, "i.icon-availability_open") %>%
-    Negate(is.na)()
-}
-
-#' @importFrom rvest html_element
-is_oa_jbc <- function(page) {
-  # TODO: should text be equal to "Open Archive"?
-  html_element(page, "span.article-header__access") %>%
-    Negate(is.na)()
+#' @importFrom rvest html_element html_text
+#' @importFrom stringr str_detect
+is_oa_hindawi <- function(page) {
+  html_element(page, "div.articleHeader>strong") %>%
+    html_text() %>%
+    str_detect("Open Access")
 }
 
 #' @importFrom rvest html_element
@@ -83,4 +106,11 @@ is_oa_rsc <- function(page) {
   img_src <- "https://www.rsc-cdn.org/pubs-core/2022.0.86/content/NewImages/open-access-icon-orange.png"
   html_element(page, glue("img[src=\"{img_src}\"]")) %>%
     Negate(is.na)()
+}
+
+#' @importFrom rvest html_element html_text
+is_oa_taylor_francis <- function(page) {
+  html_element(page, "div.accessLogo>p#logo-text") %>%
+    html_text() %>%
+    identical("Open access")
 }

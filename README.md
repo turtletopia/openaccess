@@ -52,20 +52,28 @@ obstacles.
 
 -   [Academic
     Press](https://www.elsevier.com/books-and-journals/academic-press)
+-   [BioMed Central](https://www.biomedcentral.com)
 -   [Biophysical
     Journal](https://www.sciencedirect.com/journal/biophysical-journal)
+-   [Cambridge Core](https://www.cambridge.org/core/)
+-   [Cell Reports](https://www.cell.com/cell-reports/home)
 -   [eLife](https://elifesciences.org)
 -   [Elsevier](https://www.elsevier.com)
 -   [Frontiers](https://www.frontiersin.org)
+-   [Hindawi](https://www.hindawi.com)
 -   [Journal of Biological Chemistry](https://www.jbc.org)
 -   [Journal of Neuroscience](https://www.jneurosci.org)
 -   [MDPI](https://www.mdpi.com)
+-   [Molecular Cell](https://www.cell.com/molecular-cell/home)
 -   [Nature](https://www.nature.com)
 -   [OUP Academic](https://academic.oup.com)
+-   [PeerJ](https://peerj.com)
+-   Pergamon
 -   [PLOS ONE](https://journals.plos.org/plosone/)
 -   [Portland Press](https://portlandpress.com)
 -   [The Royal Society of Chemistry](https://www.rsc.org)
 -   [SpringerLink](https://link.springer.com)
+-   [Taylor & Francis](https://www.tandfonline.com)
 
 ### (Confirmed) unsupported sources
 

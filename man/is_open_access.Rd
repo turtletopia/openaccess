@@ -31,19 +31,27 @@ Throws error if no interpreter available for the journal.
 
 \itemize{
 \item Academic Press
+\item BioMed Central
 \item Biophysical Journal
+\item Cambridge Core
+\item Cell Reports
 \item eLife
 \item Elsevier
 \item Frontiers
+\item Hindawi
 \item Journal of Biological Chemistry
 \item Journal of Neuroscience
 \item MDPI
+\item Molecular Cell
 \item Nature
 \item OUP Academic
+\item PeerJ
+\item Pergamon
 \item PLOS ONE
 \item Portland Press
 \item The Royal Society of Chemistry
 \item SpringerLink
+\item Taylor & Francis
 }
 }
 
