@@ -39,8 +39,8 @@ Throws error if no interpreter available for the journal.
 \item Journal of Neuroscience
 \item MDPI
 \item Nature
+\item OUP Academic
 \item PLOS ONE
-\item PNAS
 \item Portland Press
 \item The Royal Society of Chemistry
 \item SpringerLink

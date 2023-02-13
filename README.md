@@ -35,8 +35,8 @@ However, if you already have a HTML content, there’s no point in
 extracting the DOI to download the site again.
 
 ``` r
-rvest::read_html("https://academic.oup.com/nar/article/51/D1/D352/6761729") %>%
-  is_open_access()
+site <- rvest::read_html("https://academic.oup.com/nar/article/51/D1/D352/6761729")
+is_open_access(site)
 #> [1] TRUE
 ```
 
@@ -61,7 +61,6 @@ being).
 -   [Nature](https://www.nature.com)
 -   [OUP Academic](https://academic.oup.com)
 -   [PLOS ONE](https://journals.plos.org/plosone/)
--   [PNAS](https://www.pnas.org)
 -   [Portland Press](https://portlandpress.com)
 -   [The Royal Society of Chemistry](https://www.rsc.org)
 -   [SpringerLink](https://link.springer.com)
@@ -70,6 +69,14 @@ being).
 
 The following sites return 403 or 503 code upon accessing; hopefully a
 workaround will be implemented in the future versions of openaccess.
+
+-   [ACS Publications](https://pubs.acs.org)
+-   [Analytical Science
+    Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
+-   [FEBS Press](https://febs.onlinelibrary.wiley.com)
+-   [PNAS](https://www.pnas.org)
+-   [Science](https://www.science.org)
+-   [Wiley Online Library](https://onlinelibrary.wiley.com)
 
 ## End notes
 
