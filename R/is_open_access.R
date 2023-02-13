@@ -18,6 +18,7 @@
 #' * Journal of Neuroscience
 #' * MDPI
 #' * Nature
+#' * OUP Academic
 #' * PLOS ONE
 #' * PNAS
 #' * Portland Press

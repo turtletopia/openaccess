@@ -3,6 +3,8 @@ check_open_access <- function(page) {
   switch(
     source_site,
     "Frontiers" = TRUE,
+    "OUP Academic" = ,
+    "Portland Press" = is_oa_icon(page),
     "eLife" = is_oa_elife(page),
     "Elsevier" = ,
     "Academic Press" = is_oa_elsevier(page),
@@ -13,7 +15,6 @@ check_open_access <- function(page) {
     "Nature" = ,
     "SpringerLink" = is_oa_nature(page),
     "PNAS" = is_oa_pnas(page),
-    "Portland Press" = is_oa_portland(page),
     "Public Library of Science" = is_oa_plos(page),
     "The Royal Society of Chemistry" = is_oa_rsc(page),
     stop(glue("'{source_site}' is not supported as a source", call. = FALSE))
@@ -29,6 +30,12 @@ is_oa_elife <- function(page) {
 #' @importFrom rvest html_element
 is_oa_elsevier <- function(page) {
   html_element(page, "div.OpenAccessLabel") %>%
+    Negate(is.na)()
+}
+
+#' @importFrom rvest html_element
+is_oa_icon <- function(page) {
+  html_element(page, "i.icon-availability_open") %>%
     Negate(is.na)()
 }
 
@@ -67,13 +74,7 @@ is_oa_pnas <- function(page) {
 is_oa_plos <- function(page) {
   html_element(page, "p#licenseShort") %>%
     html_text() %>%
-    `==`("Open Access")
-}
-
-#' @importFrom rvest html_element
-is_oa_portland <- function(page) {
-  html_element(page, "i.icon-availability_open") %>%
-    Negate(is.na)()
+    identical("Open Access")
 }
 
 #' @importFrom glue glue
