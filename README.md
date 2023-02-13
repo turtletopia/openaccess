@@ -43,8 +43,10 @@ is_open_access(site)
 ## Verified journals
 
 The following journals were validated against the solution and split
-into two groups: supported and unsupported (at least for the time
-being).
+into two groups: supported and unsupported. Any journal not specified
+here is not supported either, although with the lack of support coming
+from not having evaluated the journal yet instead of objective
+obstacles.
 
 ### Supported sources
 
