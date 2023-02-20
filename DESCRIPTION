@@ -10,6 +10,7 @@ Authors@R: c(person("Laura", "Bakala",
 Description: Check whether the papers you use are in open access.
 Imports: 
     glue,
+    RSelenium,
     rvest (>= 1.0.0),
     stringr,
     utils
