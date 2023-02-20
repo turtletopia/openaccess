@@ -18,7 +18,7 @@ You can install the development version of openaccess from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("ErdaradunGaztea/openaccess")
+devtools::install_github("turtletopia/openaccess")
 ```
 
 ## How to use
