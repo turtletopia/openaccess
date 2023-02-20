@@ -22,6 +22,9 @@ is_overloaded <- function(page) {
   el_uppercase <- page %>%
     find_element("head>meta[http-equiv=REFRESH]") %>%
     is_found()
+  el_challenge <- page %>%
+    find_element("#challenge-running") %>%
+    is_found()
 
-  el_lowercase || el_uppercase
+  el_lowercase || el_uppercase || el_challenge
 }
