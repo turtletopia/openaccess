@@ -12,12 +12,15 @@
 #'
 #' @section Supported sources:
 #' * Academic Press
+#' * ACS Publications
+#' * Analytical Science Journals
 #' * BioMed Central
 #' * Biophysical Journal
 #' * Cambridge Core
 #' * Cell Reports
 #' * eLife
 #' * Elsevier
+#' * FEBS Press
 #' * Frontiers
 #' * Hindawi
 #' * Journal of Biological Chemistry
@@ -32,8 +35,10 @@
 #' * PNAS
 #' * Portland Press
 #' * The Royal Society of Chemistry
+#' * Science
 #' * SpringerLink
 #' * Taylor & Francis
+#' * Wiley Online Library
 #'
 #' @return `TRUE` or `FALSE` depending on check result.
 #'

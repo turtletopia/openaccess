@@ -6,6 +6,7 @@ check_open_access <- function(page) {
     "PeerJ" = TRUE,
     "OUP Academic" = ,
     "Portland Press" = is_oa_icon(page),
+    "ACS Publications" = is_oa_acs(page),
     "Cambridge Core" = is_oa_cambridge(page),
     "Cell Reports" = ,
     "Biophysical Journal" = ,
@@ -24,13 +25,22 @@ check_open_access <- function(page) {
     "PNAS" = is_oa_pnas(page),
     "Public Library of Science" = is_oa_plos(page),
     "The Royal Society of Chemistry" = is_oa_rsc(page),
+    "Science" = is_oa_science(page),
     "Taylor & Francis" = is_oa_taylor_francis(page),
+    "Wiley Online Library" = ,
+    "Analytical Science Journals" = ,
+    "FEBS Press" = is_oa_wiley(page),
     stop(glue("'{source_site}' is not supported as a source", call. = FALSE))
   )
 }
 
 is_oa_icon <- function(page) {
   find_element(page, "i.icon-availability_open") %>%
+    is_found()
+}
+
+is_oa_acs <- function(page) {
+  find_element(page, "div.article_header-open-access img[alt=\"ACS AuthorChoice\"]") %>%
     is_found()
 }
 
@@ -96,8 +106,22 @@ is_oa_rsc <- function(page) {
     is_found()
 }
 
+is_oa_science <- function(page) {
+  find_element(page, "i.icon-access-open") %>%
+    is_found()
+}
+
 is_oa_taylor_francis <- function(page) {
   find_element(page, "div.accessLogo>p#logo-text") %>%
     element_text() %>%
     identical("Open access")
+}
+
+is_oa_wiley <- function(page) {
+  ret <- find_element(page, "div.doi-access")
+  is_found(ret)
+  # structure(
+  #   is_found(ret),
+  #   type = element_text(ret)
+  # )
 }

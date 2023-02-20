@@ -34,12 +34,15 @@ Throws error if no interpreter available for the journal.
 
 \itemize{
 \item Academic Press
+\item ACS Publications
+\item Analytical Science Journals
 \item BioMed Central
 \item Biophysical Journal
 \item Cambridge Core
 \item Cell Reports
 \item eLife
 \item Elsevier
+\item FEBS Press
 \item Frontiers
 \item Hindawi
 \item Journal of Biological Chemistry
@@ -54,8 +57,10 @@ Throws error if no interpreter available for the journal.
 \item PNAS
 \item Portland Press
 \item The Royal Society of Chemistry
+\item Science
 \item SpringerLink
 \item Taylor & Francis
+\item Wiley Online Library
 }
 }
 
