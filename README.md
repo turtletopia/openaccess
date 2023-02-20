@@ -40,6 +40,16 @@ is_open_access(site)
 #> [1] TRUE
 ```
 
+Some sites require prior configuration of Selenium remote driver.
+
+``` r
+# Settings must match your local setup
+start_remote_driver(port = 4567, browserName = "firefox")
+#> Starting a new remote driver...
+is_open_access("10.1073/pnas.211412398")
+#> [1] FALSE
+```
+
 ## Verified journals
 
 The following journals were validated against the solution and split
@@ -52,6 +62,9 @@ obstacles.
 
 -   [Academic
     Press](https://www.elsevier.com/books-and-journals/academic-press)
+-   [ACS Publications](https://pubs.acs.org)
+-   [Analytical Science
+    Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
 -   [BioMed Central](https://www.biomedcentral.com)
 -   [Biophysical
     Journal](https://www.sciencedirect.com/journal/biophysical-journal)
@@ -59,6 +72,7 @@ obstacles.
 -   [Cell Reports](https://www.cell.com/cell-reports/home)
 -   [eLife](https://elifesciences.org)
 -   [Elsevier](https://www.elsevier.com)
+-   [FEBS Press](https://febs.onlinelibrary.wiley.com)
 -   [Frontiers](https://www.frontiersin.org)
 -   [Hindawi](https://www.hindawi.com)
 -   [Journal of Biological Chemistry](https://www.jbc.org)
@@ -70,23 +84,17 @@ obstacles.
 -   [PeerJ](https://peerj.com)
 -   Pergamon
 -   [PLOS ONE](https://journals.plos.org/plosone/)
+-   [PNAS](https://www.pnas.org)
 -   [Portland Press](https://portlandpress.com)
 -   [The Royal Society of Chemistry](https://www.rsc.org)
+-   [Science](https://www.science.org)
 -   [SpringerLink](https://link.springer.com)
 -   [Taylor & Francis](https://www.tandfonline.com)
+-   [Wiley Online Library](https://onlinelibrary.wiley.com)
 
 ### (Confirmed) unsupported sources
 
-The following sites return 403 or 503 code upon accessing; hopefully a
-workaround will be implemented in the future versions of openaccess.
-
--   [ACS Publications](https://pubs.acs.org)
--   [Analytical Science
-    Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
--   [FEBS Press](https://febs.onlinelibrary.wiley.com)
--   [PNAS](https://www.pnas.org)
--   [Science](https://www.science.org)
--   [Wiley Online Library](https://onlinelibrary.wiley.com)
+Currently all verified sources are supported.
 
 ## End notes
 

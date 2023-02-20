@@ -13,3 +13,18 @@ is_redirect <- function(page) {
     url = URLdecode(url_to_follow)
   )
 }
+
+is_overloaded <- function(page) {
+  # Use for RSelenium only for now
+  el_lowercase <- page %>%
+    find_element("head>meta[http-equiv=refresh]") %>%
+    is_found()
+  el_uppercase <- page %>%
+    find_element("head>meta[http-equiv=REFRESH]") %>%
+    is_found()
+  el_challenge <- page %>%
+    find_element("#challenge-running") %>%
+    is_found()
+
+  el_lowercase || el_uppercase || el_challenge
+}

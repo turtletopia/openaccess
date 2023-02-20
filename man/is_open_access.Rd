@@ -4,6 +4,7 @@
 \alias{is_open_access}
 \alias{is_open_access.character}
 \alias{is_open_access.xml_document}
+\alias{is_open_access.oa_remote_driver}
 \alias{is_open_access.oa_html_document}
 \title{Check a paper for open access}
 \usage{
@@ -12,6 +13,8 @@ is_open_access(article)
 \method{is_open_access}{character}(article)
 
 \method{is_open_access}{xml_document}(article)
+
+\method{is_open_access}{oa_remote_driver}(article)
 
 \method{is_open_access}{oa_html_document}(article)
 }
@@ -31,12 +34,15 @@ Throws error if no interpreter available for the journal.
 
 \itemize{
 \item Academic Press
+\item ACS Publications
+\item Analytical Science Journals
 \item BioMed Central
 \item Biophysical Journal
 \item Cambridge Core
 \item Cell Reports
 \item eLife
 \item Elsevier
+\item FEBS Press
 \item Frontiers
 \item Hindawi
 \item Journal of Biological Chemistry
@@ -48,10 +54,13 @@ Throws error if no interpreter available for the journal.
 \item PeerJ
 \item Pergamon
 \item PLOS ONE
+\item PNAS
 \item Portland Press
 \item The Royal Society of Chemistry
+\item Science
 \item SpringerLink
 \item Taylor & Francis
+\item Wiley Online Library
 }
 }
 

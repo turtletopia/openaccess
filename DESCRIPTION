@@ -1,7 +1,7 @@
 Package: openaccess
 Type: Package
 Title: Check If a Paper Is in Open Access
-Version: 0.0.0.9000
+Version: 0.1.0
 Date: 2023-02-12
 Authors@R: c(person("Laura", "Bakala",
              email = "erdaradun.gaztea@gmail.com",
@@ -10,6 +10,7 @@ Authors@R: c(person("Laura", "Bakala",
 Description: Check whether the papers you use are in open access.
 Imports: 
     glue,
+    RSelenium,
     rvest (>= 1.0.0),
     stringr,
     utils

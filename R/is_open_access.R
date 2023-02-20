@@ -1,3 +1,5 @@
+.CURRENT_DOI <- NULL
+
 #' Check a paper for open access
 #'
 #' @description
@@ -10,12 +12,15 @@
 #'
 #' @section Supported sources:
 #' * Academic Press
+#' * ACS Publications
+#' * Analytical Science Journals
 #' * BioMed Central
 #' * Biophysical Journal
 #' * Cambridge Core
 #' * Cell Reports
 #' * eLife
 #' * Elsevier
+#' * FEBS Press
 #' * Frontiers
 #' * Hindawi
 #' * Journal of Biological Chemistry
@@ -27,10 +32,13 @@
 #' * PeerJ
 #' * Pergamon
 #' * PLOS ONE
+#' * PNAS
 #' * Portland Press
 #' * The Royal Society of Chemistry
+#' * Science
 #' * SpringerLink
 #' * Taylor & Francis
+#' * Wiley Online Library
 #'
 #' @return `TRUE` or `FALSE` depending on check result.
 #'
@@ -43,9 +51,12 @@ is_open_access <- function(article) {
 }
 
 #' @rdname is_open_access
+#' @importFrom glue glue
+#' @importFrom utils assignInMyNamespace
 #' @export
 is_open_access.character <- function(article) {
-  is_open_access(get_page_content(article))
+  assignInMyNamespace(".CURRENT_DOI", article)
+  is_open_access(get_html(glue("https://doi.org/{article}")))
 }
 
 #' @rdname is_open_access
@@ -54,8 +65,18 @@ is_open_access.character <- function(article) {
 is_open_access.xml_document <- function(article) {
   redirects <- is_redirect(article)
   while (redirects) {
-    article <- read_html(attr(redirects, "url", exact = TRUE))
+    article <- get_html(attr(redirects, "url", exact = TRUE))
     redirects <- is_redirect(article)
+  }
+  is_open_access(determine_source(article))
+}
+
+#' @rdname is_open_access
+#' @export
+is_open_access.oa_remote_driver <- function(article) {
+  if (is_overloaded(article)) {
+    do.call(start_remote_driver, .REMOTE_DRIVER_SETTINGS)
+    is_open_access(.CURRENT_DOI)
   }
   is_open_access(determine_source(article))
 }
@@ -66,30 +87,24 @@ is_open_access.oa_html_document <- function(article) {
   check_open_access(article)
 }
 
-#' @importFrom glue glue
-#' @importFrom rvest read_html
-get_page_content <- function(doi) {
-  read_html(glue("https://doi.org/{doi}"))
-}
-
 #' @importFrom rvest html_attr html_element
 determine_source <- function(page) {
   source <- page %>%
-    html_element("head>meta[property=\"og:site_name\"]") %>%
-    html_attr("content")
+    find_element("head>meta[property=\"og:site_name\"]") %>%
+    element_attr("content")
 
   if (is.na(source) || source == "") {
     # If `og:site_name` property is missing
     source <- page %>%
-      html_element("head>meta[name=citation_publisher]") %>%
-      html_attr("content")
+      find_element("head>meta[name=citation_publisher]") %>%
+      element_attr("content")
   }
 
   if (is.na(source) || source == "") {
     # If citation publisher is missing as well
     source <- page %>%
-      html_element("head>meta[name=\"DC.publisher\"]") %>%
-      html_attr("content")
+      find_element("head>meta[name=\"DC.publisher\"]") %>%
+      element_attr("content")
   }
 
   structure(
