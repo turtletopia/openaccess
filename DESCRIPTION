@@ -1,7 +1,7 @@
 Package: openaccess
 Type: Package
 Title: Check If a Paper Is in Open Access
-Version: 0.0.0.9001
+Version: 0.1.0
 Date: 2023-02-12
 Authors@R: c(person("Laura", "Bakala",
              email = "erdaradun.gaztea@gmail.com",
