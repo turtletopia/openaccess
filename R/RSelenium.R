@@ -1,4 +1,5 @@
 .REMOTE_DRIVER <- NULL
+.REMOTE_DRIVER_SETTINGS <- list()
 
 #' Create browser connection for RSelenium
 #'
@@ -22,6 +23,11 @@
 #' @importFrom utils assignInMyNamespace
 #' @export
 start_remote_driver <- function(...) {
+  message("Starting a new remote driver...")
   assignInMyNamespace(".REMOTE_DRIVER", remoteDriver(...))
+  assignInMyNamespace(".REMOTE_DRIVER_SETTINGS", list(...))
+  # Silence RSelenium output
+  sink(nullfile())
   .REMOTE_DRIVER$open()
+  on.exit(sink())
 }

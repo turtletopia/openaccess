@@ -1,3 +1,5 @@
+.CURRENT_DOI <- NULL
+
 #' Check a paper for open access
 #'
 #' @description
@@ -44,8 +46,10 @@ is_open_access <- function(article) {
 
 #' @rdname is_open_access
 #' @importFrom glue glue
+#' @importFrom utils assignInMyNamespace
 #' @export
 is_open_access.character <- function(article) {
+  assignInMyNamespace(".CURRENT_DOI", article)
   is_open_access(get_html(glue("https://doi.org/{article}")))
 }
 
@@ -64,6 +68,10 @@ is_open_access.xml_document <- function(article) {
 #' @rdname is_open_access
 #' @export
 is_open_access.oa_remote_driver <- function(article) {
+  if (is_overloaded(article)) {
+    do.call(start_remote_driver, .REMOTE_DRIVER_SETTINGS)
+    is_open_access(.CURRENT_DOI)
+  }
   is_open_access(determine_source(article))
 }
 
