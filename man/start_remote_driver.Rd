@@ -21,7 +21,7 @@ rvest is preferred unless there is no choice.
 }
 \examples{
 \dontrun{
-start_remote_driver(port = 4567L, browserName = "chrome")
+start_remote_driver(port = 4567L, browserName = "firefox")
 }
 
 }

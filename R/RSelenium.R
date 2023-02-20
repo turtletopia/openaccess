@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' start_remote_driver(port = 4567L, browserName = "chrome")
+#' start_remote_driver(port = 4567L, browserName = "firefox")
 #' }
 #'
 #' @importFrom RSelenium remoteDriver

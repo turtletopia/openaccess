@@ -4,6 +4,7 @@
 \alias{is_open_access}
 \alias{is_open_access.character}
 \alias{is_open_access.xml_document}
+\alias{is_open_access.oa_remote_driver}
 \alias{is_open_access.oa_html_document}
 \title{Check a paper for open access}
 \usage{
@@ -12,6 +13,8 @@ is_open_access(article)
 \method{is_open_access}{character}(article)
 
 \method{is_open_access}{xml_document}(article)
+
+\method{is_open_access}{oa_remote_driver}(article)
 
 \method{is_open_access}{oa_html_document}(article)
 }
