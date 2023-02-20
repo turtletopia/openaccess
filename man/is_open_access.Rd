@@ -51,6 +51,7 @@ Throws error if no interpreter available for the journal.
 \item PeerJ
 \item Pergamon
 \item PLOS ONE
+\item PNAS
 \item Portland Press
 \item The Royal Society of Chemistry
 \item SpringerLink

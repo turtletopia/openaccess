@@ -69,6 +69,7 @@ The following journals were validated against the solution and split into two gr
 * [PeerJ](https://peerj.com)
 * Pergamon
 * [PLOS ONE](https://journals.plos.org/plosone/)
+* [PNAS](https://www.pnas.org)
 * [Portland Press](https://portlandpress.com)
 * [The Royal Society of Chemistry](https://www.rsc.org)
 * [SpringerLink](https://link.springer.com)
@@ -81,7 +82,6 @@ The following sites return 403 or 503 code upon accessing; hopefully a workaroun
 * [ACS Publications](https://pubs.acs.org)
 * [Analytical Science Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
 * [FEBS Press](https://febs.onlinelibrary.wiley.com)
-* [PNAS](https://www.pnas.org)
 * [Science](https://www.science.org)
 * [Wiley Online Library](https://onlinelibrary.wiley.com)
 

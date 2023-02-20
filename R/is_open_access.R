@@ -29,6 +29,7 @@
 #' * PeerJ
 #' * Pergamon
 #' * PLOS ONE
+#' * PNAS
 #' * Portland Press
 #' * The Royal Society of Chemistry
 #' * SpringerLink

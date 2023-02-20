@@ -70,6 +70,7 @@ obstacles.
 -   [PeerJ](https://peerj.com)
 -   Pergamon
 -   [PLOS ONE](https://journals.plos.org/plosone/)
+-   [PNAS](https://www.pnas.org)
 -   [Portland Press](https://portlandpress.com)
 -   [The Royal Society of Chemistry](https://www.rsc.org)
 -   [SpringerLink](https://link.springer.com)
@@ -84,7 +85,6 @@ workaround will be implemented in the future versions of openaccess.
 -   [Analytical Science
     Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
 -   [FEBS Press](https://febs.onlinelibrary.wiley.com)
--   [PNAS](https://www.pnas.org)
 -   [Science](https://www.science.org)
 -   [Wiley Online Library](https://onlinelibrary.wiley.com)
 
