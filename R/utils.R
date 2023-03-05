@@ -30,3 +30,11 @@ standardize_access <- function(access_type) {
     "Closed Access"
   }
 }
+
+closed_if_null <- function(access_type) {
+  if (is.null(access_type)) "Closed Access" else access_type
+}
+
+string_match <- function(string, regex) {
+  regmatches(string, regexec(regex, string))[[1]][2]
+}

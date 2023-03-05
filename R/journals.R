@@ -1,16 +1,18 @@
 get_access_type <- function(page) {
-  source_site <- attr(page, "source_site", exact = TRUE)
+  canonical_url <- attr(page, "canonical_url", exact = TRUE)
   switch(
-    source_site,
+    canonical_url,
     # ASBMB
-    "Journal of Biological Chemistry" = ,
-    "Journal of Lipid Research" = ,
-    "Molecular & Cellular Proteomics" = "Open Access",
+    "www.jbc.org" = ,
+    "www.jlr.org" = ,
+    "www.mcponline.org" = "Open Access",
     # Cell Press
-    "Cell Reports" = ,
-    "Cell Reports Medicine" = "Open Access",
-    "Biophysical Journal" = ,
-    "Molecular Cell" = is_oa_pb_page(page),
+    "www.cell.com" = is_oa_cell(page),
+    # Other publishers
+    "www.hindawi.com" = is_oa_hindawi(page),
+    "www.tandfonline.com" = is_oa_taylor_francis(page),
+
+
     # Other publishers
     "Frontiers" = ,
     "PeerJ" = "Open Access",
@@ -22,7 +24,6 @@ get_access_type <- function(page) {
     "Elsevier" = ,
     "Academic Press" = ,
     "Pergamon" = is_oa_elsevier(page),
-    "Hindawi" = is_oa_hindawi(page),
     "Journal of Neuroscience" = is_oa_jneurosci(page),
     "MDPI" = is_oa_mdpi(page),
     "Nature" = ,
@@ -32,18 +33,16 @@ get_access_type <- function(page) {
     "Public Library of Science" = is_oa_plos(page),
     "The Royal Society of Chemistry" = is_oa_rsc(page),
     "Science" = is_oa_science(page),
-    "Taylor & Francis" = is_oa_taylor_francis(page),
     "Wiley Online Library" = ,
     "Analytical Science Journals" = ,
     "FEBS Press" = is_oa_wiley(page),
     stop(glue(
-      "'{source_site}' is not supported as a source (for {.CURRENT_DOI})"
+      "'{canonical_url}' is not supported as a source (for {.CURRENT_DOI})"
     ), call. = FALSE)
   )
 }
 
-is_oa_pb_page <- function(page) {
-  # Full support
+is_oa_cell <- function(page) {
   access_type <- find_element(page, "span.article-header__access")
   if (is_found(access_type)) {
     standardize_access(element_text(access_type))
@@ -52,6 +51,25 @@ is_oa_pb_page <- function(page) {
     if (is_found(purchase)) "Closed Access" else "Free Access"
   }
 }
+
+is_oa_hindawi <- function(page) {
+  find_element(page, "div.articleHeader>strong") %>%
+    element_text() %>%
+    string_match("\\|(.*)") %>%
+    standardize_access()
+}
+
+is_oa_taylor_francis <- function(page) {
+  find_element(page, "div.accessLogo>p#logo-text") %>%
+    element_text() %>%
+    standardize_access() %>%
+    closed_if_null()
+}
+
+
+
+
+
 
 is_oa_icon <- function(page) {
   find_element(page, "i.icon-availability_open") %>%
@@ -81,13 +99,6 @@ is_oa_elsevier <- function(page) {
   find_element(page, "div.OpenAccessLabel") %>%
     is_found() %>%
     open_closed()
-}
-
-#' @importFrom stringr str_detect
-is_oa_hindawi <- function(page) {
-  find_element(page, "div.articleHeader>strong") %>%
-    element_text() %>%
-    str_detect("Open Access")
 }
 
 is_oa_jneurosci <- function(page) {
@@ -132,12 +143,6 @@ is_oa_science <- function(page) {
   find_element(page, "i.icon-access-open") %>%
     is_found() %>%
     open_closed()
-}
-
-is_oa_taylor_francis <- function(page) {
-  find_element(page, "div.accessLogo>p#logo-text") %>%
-    element_text() %>%
-    identical("Open access")
 }
 
 is_oa_wiley <- function(page) {

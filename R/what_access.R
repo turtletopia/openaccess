@@ -96,30 +96,3 @@ what_access_intrnl.oa_html_document <- function(object) {
 .S3method(
   "what_access_intrnl", "oa_html_document", what_access_intrnl.oa_html_document
 )
-
-#' @importFrom rvest html_attr html_element
-determine_source <- function(page) {
-  source <- page %>%
-    find_element("head>meta[property=\"og:site_name\"]") %>%
-    element_attr("content")
-
-  if (is.na(source) || source == "") {
-    # If `og:site_name` property is missing
-    source <- page %>%
-      find_element("head>meta[name=citation_publisher]") %>%
-      element_attr("content")
-  }
-
-  if (is.na(source) || source == "") {
-    # If citation publisher is missing as well
-    source <- page %>%
-      find_element("head>meta[name=\"DC.publisher\"]") %>%
-      element_attr("content")
-  }
-
-  structure(
-    page,
-    source_site = source,
-    class = c("oa_html_document", class(page))
-  )
-}
