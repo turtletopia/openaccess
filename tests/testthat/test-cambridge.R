@@ -1,0 +1,3 @@
+test_open_access("10.1017/s0033583516000172")
+test_free_access("10.1017/s0317167100020266")
+test_closed_access("10.1017/s0022029909990057")
