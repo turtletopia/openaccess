@@ -10,6 +10,10 @@ get_access_type <- function(page) {
     "www.cell.com" = is_oa_cell(page),
     # Science Direct
     "www.sciencedirect.com" = is_oa_elsevier(page),
+    # Springer Nature
+    "link.springer.com" = ,
+    "www.nature.com" = ,
+    "biomedcentral.com" = is_oa_springer(page),
     # Other publishers
     "peerj.com" = "Open Access",
     "www.cambridge.org" = is_oa_cambridge(page),
@@ -24,9 +28,6 @@ get_access_type <- function(page) {
     "Portland Press" = is_oa_icon(page),
     "ACS Publications" = is_oa_acs(page),
     "eLife" = is_oa_elife(page),
-    "Elsevier" = ,
-    "Academic Press" = ,
-    "Pergamon" = is_oa_elsevier(page),
     "Journal of Neuroscience" = is_oa_jneurosci(page),
     "MDPI" = is_oa_mdpi(page),
     "Nature" = ,
@@ -60,7 +61,7 @@ is_oa_cambridge <- function(page) {
 is_oa_cell <- function(page) {
   access_type <- find_element(page, "span.article-header__access")
   if (is_found(access_type)) {
-    open_access %>%
+    access_type %>%
       element_text() %>%
       standardize_access()
   } else {
@@ -86,6 +87,18 @@ is_oa_hindawi <- function(page) {
     element_text() %>%
     string_match("\\|(.*)") %>%
     standardize_access()
+}
+
+is_oa_springer <- function(page) {
+  open_access <- find_element(page, "span[data-test=open-access]")
+  if (is_found(open_access)) {
+    open_access %>%
+      element_text() %>%
+      standardize_access()
+  } else {
+    download <- find_element(page, "span.c-pdf-download__text")
+    if (is_found(download)) "Free Access" else "Closed Access"
+  }
 }
 
 is_oa_taylor_francis <- function(page) {
@@ -126,12 +139,6 @@ is_oa_jneurosci <- function(page) {
 
 is_oa_mdpi <- function(page) {
   find_element(page, "span.openaccess") %>%
-    is_found() %>%
-    open_closed()
-}
-
-is_oa_nature <- function(page) {
-  find_element(page, "span[data-test=open-access]") %>%
     is_found() %>%
     open_closed()
 }
