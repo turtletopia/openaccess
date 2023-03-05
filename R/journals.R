@@ -2,16 +2,22 @@ get_access_type <- function(page) {
   source_site <- attr(page, "source_site", exact = TRUE)
   switch(
     source_site,
+    # ASBMB
+    "Journal of Biological Chemistry" = ,
+    "Journal of Lipid Research" = ,
+    "Molecular & Cellular Proteomics" = "Open Access",
+    # Cell Press
+    "Cell Reports" = ,
+    "Cell Reports Medicine" = "Open Access",
+    "Biophysical Journal" = ,
+    "Molecular Cell" = is_oa_pb_page(page),
+    # Other publishers
     "Frontiers" = ,
     "PeerJ" = "Open Access",
     "OUP Academic" = ,
     "Portland Press" = is_oa_icon(page),
     "ACS Publications" = is_oa_acs(page),
     "Cambridge Core" = is_oa_cambridge(page),
-    "Cell Reports" = ,
-    "Biophysical Journal" = ,
-    "Journal of Biological Chemistry" = ,
-    "Molecular Cell" = is_oa_cell(page),
     "eLife" = is_oa_elife(page),
     "Elsevier" = ,
     "Academic Press" = ,
@@ -30,8 +36,21 @@ get_access_type <- function(page) {
     "Wiley Online Library" = ,
     "Analytical Science Journals" = ,
     "FEBS Press" = is_oa_wiley(page),
-    stop(glue("'{source_site}' is not supported as a source", call. = FALSE))
+    stop(glue(
+      "'{source_site}' is not supported as a source (for {.CURRENT_DOI})"
+    ), call. = FALSE)
   )
+}
+
+is_oa_pb_page <- function(page) {
+  # Full support
+  access_type <- find_element(page, "span.article-header__access")
+  if (is_found(access_type)) {
+    standardize_access(element_text(access_type))
+  } else {
+    purchase <- find_element(page, "a.article-tools__item__purchase")
+    if (is_found(purchase)) "Closed Access" else "Free Access"
+  }
 }
 
 is_oa_icon <- function(page) {
@@ -50,17 +69,6 @@ is_oa_cambridge <- function(page) {
   find_element(page, "span.open-access>img.open-access") %>%
     is_found() %>%
     open_closed()
-}
-
-is_oa_cell <- function(page) {
-  # Full support
-  access_type <- find_element(page, "span.article-header__access")
-  if (is_found(access_type)) {
-    standardize_access(element_text(access_type))
-  } else {
-    purchase <- find_element(page, "a.article-tools__item__purchase")
-    if (is_found(purchase)) "Closed Access" else "Free Access"
-  }
 }
 
 is_oa_elife <- function(page) {
