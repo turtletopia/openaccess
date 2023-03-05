@@ -20,14 +20,17 @@
 #' * Biophysical Journal
 #' * Cambridge Core
 #' * Cell Reports
+#' * Cell Reports Medicine
 #' * eLife
 #' * Elsevier
 #' * FEBS Press
 #' * Frontiers
 #' * Hindawi
 #' * Journal of Biological Chemistry
+#' * Journal of Lipid Research
 #' * Journal of Neuroscience
 #' * MDPI
+#' * Molecular & Cellular Proteomics
 #' * Molecular Cell
 #' * Nature
 #' * OUP Academic

@@ -27,14 +27,17 @@ Throws error if no interpreter available for the journal.
 \item Biophysical Journal
 \item Cambridge Core
 \item Cell Reports
+\item Cell Reports Medicine
 \item eLife
 \item Elsevier
 \item FEBS Press
 \item Frontiers
 \item Hindawi
 \item Journal of Biological Chemistry
+\item Journal of Lipid Research
 \item Journal of Neuroscience
 \item MDPI
+\item Molecular & Cellular Proteomics
 \item Molecular Cell
 \item Nature
 \item OUP Academic

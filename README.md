@@ -50,15 +50,35 @@ is_open_access("10.1073/pnas.211412398")
 #> [1] FALSE
 ```
 
+If you’re interested in a detailed access type (differentiating between
+Closed Access and Open Archive, for example), use this:
+
+``` r
+what_access("10.1093/nar/gkac882")
+#> [1] "Open Access"
+```
+
 ## Verified journals
 
-The following journals were validated against the solution and split
-into two groups: supported and unsupported. Any journal not specified
-here is not supported either, although with the lack of support coming
-from not having evaluated the journal yet instead of objective
-obstacles.
+The following journals were validated against the solution and are
+confirmed to be supported. Any source not specified here is not
+supported, usually due to not having evaluated the journal yet.
 
-### Supported sources
+### ASBMB
+
+-   [Journal of Biological Chemistry](https://www.jbc.org)
+-   [Journal of Lipid Research](https://www.jlr.org)
+-   [Molecular & Cellular Proteomics](https://www.mcponline.org)
+
+### Cell Press
+
+-   [Biophysical Journal](https://www.cell.com/biophysj/home)
+-   [Cell Reports](https://www.cell.com/cell-reports/home)
+-   [Cell Reports
+    Medicine](https://www.cell.com/cell-reports-medicine/home)
+-   [Molecular Cell](https://www.cell.com/molecular-cell/home)
+
+### Other publishers
 
 -   [Academic
     Press](https://www.elsevier.com/books-and-journals/academic-press)
@@ -66,19 +86,14 @@ obstacles.
 -   [Analytical Science
     Journals](https://analyticalsciencejournals.onlinelibrary.wiley.com)
 -   [BioMed Central](https://www.biomedcentral.com)
--   [Biophysical
-    Journal](https://www.sciencedirect.com/journal/biophysical-journal)
 -   [Cambridge Core](https://www.cambridge.org/core/)
--   [Cell Reports](https://www.cell.com/cell-reports/home)
 -   [eLife](https://elifesciences.org)
 -   [Elsevier](https://www.elsevier.com)
 -   [FEBS Press](https://febs.onlinelibrary.wiley.com)
 -   [Frontiers](https://www.frontiersin.org)
 -   [Hindawi](https://www.hindawi.com)
--   [Journal of Biological Chemistry](https://www.jbc.org)
 -   [Journal of Neuroscience](https://www.jneurosci.org)
 -   [MDPI](https://www.mdpi.com)
--   [Molecular Cell](https://www.cell.com/molecular-cell/home)
 -   [Nature](https://www.nature.com)
 -   [OUP Academic](https://academic.oup.com)
 -   [PeerJ](https://peerj.com)
@@ -91,10 +106,6 @@ obstacles.
 -   [SpringerLink](https://link.springer.com)
 -   [Taylor & Francis](https://www.tandfonline.com)
 -   [Wiley Online Library](https://onlinelibrary.wiley.com)
-
-### (Confirmed) unsupported sources
-
-Currently all verified sources are supported.
 
 ## End notes
 
