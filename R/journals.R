@@ -1,9 +1,9 @@
-check_open_access <- function(page) {
+get_access_type <- function(page) {
   source_site <- attr(page, "source_site", exact = TRUE)
   switch(
     source_site,
     "Frontiers" = ,
-    "PeerJ" = TRUE,
+    "PeerJ" = "Open Access",
     "OUP Academic" = ,
     "Portland Press" = is_oa_icon(page),
     "ACS Publications" = is_oa_acs(page),
@@ -36,34 +36,43 @@ check_open_access <- function(page) {
 
 is_oa_icon <- function(page) {
   find_element(page, "i.icon-availability_open") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_acs <- function(page) {
   find_element(page, "div.article_header-open-access img[alt=\"ACS AuthorChoice\"]") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_cambridge <- function(page) {
   find_element(page, "span.open-access>img.open-access") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
-#' @importFrom stringr str_detect
 is_oa_cell <- function(page) {
-  find_element(page, "span.article-header__access") %>%
-    element_text() %>%
-    str_detect("^Open (?:Archive|Access)$")
+  # Full support
+  access_type <- find_element(page, "span.article-header__access")
+  if (is_found(access_type)) {
+    standardize_access(element_text(access_type))
+  } else {
+    purchase <- find_element(page, "a.article-tools__item__purchase")
+    if (is_found(purchase)) "Closed Access" else "Free Access"
+  }
 }
 
 is_oa_elife <- function(page) {
   find_element(page, "a.content-header__icon--oa") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_elsevier <- function(page) {
   find_element(page, "div.OpenAccessLabel") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 #' @importFrom stringr str_detect
@@ -75,22 +84,26 @@ is_oa_hindawi <- function(page) {
 
 is_oa_jneurosci <- function(page) {
   find_element(page, "span.highwire-foxycart-add-to-cart") %>%
-    Negate(is_found)()
+    Negate(is_found)() %>%
+    open_closed()
 }
 
 is_oa_mdpi <- function(page) {
   find_element(page, "span.openaccess") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_nature <- function(page) {
   find_element(page, "span[data-test=open-access]") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_pnas <- function(page) {
   find_element(page, "i.icon-open_access") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_plos <- function(page) {
@@ -103,12 +116,14 @@ is_oa_plos <- function(page) {
 is_oa_rsc <- function(page) {
   img_src <- "https://www.rsc-cdn.org/pubs-core/2022.0.86/content/NewImages/open-access-icon-orange.png"
   find_element(page, glue("img[src=\"{img_src}\"]")) %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_science <- function(page) {
   find_element(page, "i.icon-access-open") %>%
-    is_found()
+    is_found() %>%
+    open_closed()
 }
 
 is_oa_taylor_francis <- function(page) {
@@ -119,7 +134,8 @@ is_oa_taylor_francis <- function(page) {
 
 is_oa_wiley <- function(page) {
   ret <- find_element(page, "div.doi-access")
-  is_found(ret)
+  is_found(ret) %>%
+    open_closed()
   # structure(
   #   is_found(ret),
   #   type = element_text(ret)

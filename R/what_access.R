@@ -49,7 +49,7 @@
 #'
 #' @export
 what_access <- function(articles) {
-  vapply(articles, what_access_intrnl, FUN.VALUE = character(1))
+  vapply(articles, what_access_intrnl, FUN.VALUE = character(1), USE.NAMES = FALSE)
 }
 
 what_access_intrnl <- function(object) {
@@ -62,6 +62,7 @@ what_access_intrnl.character <- function(object) {
   assignInMyNamespace(".CURRENT_DOI", object)
   what_access_intrnl(get_html(glue("https://doi.org/{object}")))
 }
+.S3method("what_access_intrnl", "character", what_access_intrnl.character)
 
 #' @importFrom rvest read_html
 what_access_intrnl.xml_document <- function(object) {
@@ -72,6 +73,7 @@ what_access_intrnl.xml_document <- function(object) {
   }
   what_access_intrnl(determine_source(object))
 }
+.S3method("what_access_intrnl", "xml_document", what_access_intrnl.xml_document)
 
 what_access_intrnl.oa_remote_driver <- function(object) {
   if (is_overloaded(object)) {
@@ -80,10 +82,16 @@ what_access_intrnl.oa_remote_driver <- function(object) {
   }
   what_access_intrnl(determine_source(object))
 }
+.S3method(
+  "what_access_intrnl", "oa_remote_driver", what_access_intrnl.oa_remote_driver
+)
 
 what_access_intrnl.oa_html_document <- function(object) {
-  check_open_access(object)
+  get_access_type(object)
 }
+.S3method(
+  "what_access_intrnl", "oa_html_document", what_access_intrnl.oa_html_document
+)
 
 #' @importFrom rvest html_attr html_element
 determine_source <- function(page) {
