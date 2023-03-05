@@ -21,3 +21,6 @@ RoxygenNote: 7.2.3
 URL: https://github.com/turtletopia/openaccess
 BugReports: https://github.com/turtletopia/openaccess/issues
 Language: en-US
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

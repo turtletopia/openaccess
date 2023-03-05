@@ -3,7 +3,8 @@
 #' Check paper access type
 #'
 #' @description
-#' TODO
+#' Checks the access type under which a paper is available. It can be one of:
+#' "Open Access", "Open Archive", "Free Access", "Closed Access".
 #'
 #' @param articles `character() | xml_document()`\cr
 #'  DOIs of the papers; or the HTML sites containing the papers acquired using

@@ -16,7 +16,8 @@ Paper access type, one of \verb{Open Access}, \verb{Open Archive},
 \verb{Free Access}, and \verb{Closed Access}.
 }
 \description{
-TODO
+Checks the access type under which a paper is available. It can be one of:
+"Open Access", "Open Archive", "Free Access", "Closed Access".
 }
 \section{Supported sources}{
 \itemize{
