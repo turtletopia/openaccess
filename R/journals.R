@@ -8,7 +8,10 @@ get_access_type <- function(page) {
     "www.mcponline.org" = "Open Access",
     # Cell Press
     "www.cell.com" = is_oa_cell(page),
+    # Science Direct
+    "www.sciencedirect.com" = is_oa_elsevier(page),
     # Other publishers
+    "peerj.com" = "Open Access",
     "www.hindawi.com" = is_oa_hindawi(page),
     "www.tandfonline.com" = is_oa_taylor_francis(page),
 
@@ -52,6 +55,18 @@ is_oa_cell <- function(page) {
   }
 }
 
+is_oa_elsevier <- function(page) {
+  open_access <- find_element(page, "div.OpenAccessLabel")
+  if (is_found(open_access)) {
+    open_access %>%
+      element_text() %>%
+      standardize_access()
+  } else {
+    purchase <- find_element(page, "li.PurchasePDF")
+    if (is_found(purchase)) "Closed Access" else "Free Access"
+  }
+}
+
 is_oa_hindawi <- function(page) {
   find_element(page, "div.articleHeader>strong") %>%
     element_text() %>%
@@ -91,12 +106,6 @@ is_oa_cambridge <- function(page) {
 
 is_oa_elife <- function(page) {
   find_element(page, "a.content-header__icon--oa") %>%
-    is_found() %>%
-    open_closed()
-}
-
-is_oa_elsevier <- function(page) {
-  find_element(page, "div.OpenAccessLabel") %>%
     is_found() %>%
     open_closed()
 }
